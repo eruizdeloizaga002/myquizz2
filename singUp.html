@@ -1,0 +1,87 @@
+<DOCTYPE HTML>
+<html>
+	
+	<style type="text/css">
+	<!--
+		body { cursor: crosshair}
+	-->
+	fieldset {
+    background-color:  #dfdfdf;
+    border:  1px solid #ccc;
+    margin:  2em 0;
+    padding:  1em;
+	}
+	
+	h1 {
+    color: black;
+    font-family: Impact;
+    font-size: 200%;
+	}
+	</style> 
+	
+	<head>
+		<title>	signUp.html </title>
+
+		<h1><P ALIGN=center>SINGUP</p></h1>
+	</head>
+	
+	<form id="erregistro" name="erregistro" onSubmit="ikusBalioak()">
+	
+	<script type="text/javascript">
+		function ikusBalioak(){
+			var sAux="";
+			var frm = document.getElementById("erregistro");
+			for(i=1;i<frm.elements.length-2;i++){
+			sAux +=frm.elements[i].name +" : ";
+			sAux +=frm.elements[i].value+"\n";	
+			
+		}
+		alert(sAux);
+	
+		}
+	</script>
+	
+	<body>
+	
+		<form>
+		
+		<p><font face="Arial" size="3">
+			
+			<fieldset>
+			
+			<legend> Personal information: </legend><br>
+			
+			First name:*<br>
+			<input type="text" name="Firstname" required><br>
+			Last name:*<br>
+			<input type="text" name="Lastname" required><br>
+			Password:*<br>
+			<input type="password" name="Password" required><br>
+			E-mail:* <br>
+			<input type="email" name="Email" required><br>
+			Phone number:*<br>
+			<input type="tel" name= "Phone" required></input><br>
+			Speciality:*<br>
+			<select required>
+				<option value="Software Engineering">Software Engineering</option>
+				<option value="SpecialityComputational Engineering">Computational Engineering</option>
+				<option value="Hardware Engineering">Hardware Engineering</option>
+			</select><br>
+			<br>
+			Other comments:<br>
+			<textarea name="Comments" cols="40" rows="5"></textarea><br>
+			<br>
+			Photo:<br>
+			<input type="file" name="Image"></input><br>
+			
+			<P ALIGN=center><input type="reset" value="Reset"></input></p>
+			
+			<P ALIGN=center><input type="submit" value="Submit"></p>
+			
+			</fieldset>
+			</font></p>
+		</form>
+			<span class="right"><P ALIGN=center><a href="layout.html">Back</a></p></span>
+	</body>
+
+</html>
