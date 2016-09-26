@@ -1,4 +1,4 @@
-<DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 	
 	<style type="text/css">
@@ -20,52 +20,141 @@
 	</style> 
 	
 	<head>
+		
 		<title>	signUp.html </title>
 
-		<h1><P ALIGN=center>SINGUP</p></h1>
-	</head>
-	
-	<form id="erregistro" name="erregistro" onSubmit="ikusBalioak()">
-	
-	<script type="text/javascript">
-		function ikusBalioak(){
-			var sAux="";
-			var frm = document.getElementById("erregistro");
-			for(i=1;i<frm.elements.length-2;i++){
-			sAux +=frm.elements[i].name +" : ";
-			sAux +=frm.elements[i].value+"\n";	
-			
-		}
-		alert(sAux);
-	
-		}
-	</script>
-	
-	<body>
-	
-		<form>
+		<h1><P ALIGN=center>SIGNUP</p></h1>
 		
+			<script type="text/javascript">
+			
+			function baliozkoa(){
+			
+				var i = fieldsEmpty(i);
+				var v = 0;
+				
+				if (i == 0){	
+					
+					if(!surnameControl(document.getElementById("n").value)){
+						v = 1;
+						alert("You should fill the Name gap with two surnames!");
+					}
+
+					if(document.getElementById("p").value.length < 6){
+						v = 1;
+						alert("The password must have 6 or more elements!");
+					}
+					
+					if(!emailControl(document.getElementById("e").value)){
+						v = 1;
+						alert("The email is not correct, it must have three numbers in the end!");
+					}
+
+					if(!telephoneControl(document.getElementById("t").value)){
+						v = 1;
+						alert("The telephone number must have 9 digits!");
+					}
+					
+					if (v == 0){
+						ikusBalioak();
+					}
+				}
+				
+			}
+		
+		
+			 function ikusBalioak(){
+                var sAux="";
+                var frm = document.getElementById("erregistro");
+
+            		for(i=1;i<frm.elements.length-2;i++){
+                        sAux +=frm.elements[i].name +" : ";
+                        sAux +=frm.elements[i].value+"\n";      
+					}
+                    alert(sAux);
+	          }
+			   
+			function fieldsEmpty(v){			       
+				var frm = document.getElementById("erregistro");
+				
+				for(i=1;i<frm.elements.length-4;i++){
+                    if(frm.elements[i].value.length==0){
+					   alert("Fill the required gaps!");
+                       return 1;
+                    }
+                 }	 
+			return 0;
+			}
+            		
+			function surnameControl(name){
+				
+				var regex = /([A-Z])([a-z])+ ([A-Z])([a-z])+ ([A-Z])([a-z])+/g;
+					
+				return regex.test(name);
+			}
+			           
+			function telephoneControl(phone){
+				
+				 var regex =/[A-Za-z]+/g;
+                 var regex1 =/\d{9}/;
+				 if (regex.test(phone) && regex1.test(phone)){
+					return true;
+				 }else{
+					return false;
+				}
+			}
+				 
+				// return regex.test(phone);
+				/*if(document.getElementById("Telephone").value.length != 9){
+               		 alert("The telephone number must have 9 digits!");
+                     return 1;
+                }else if(document.getElementById("Telephone").value.match(c1).length > 0){
+                     alert("The telephone number shouldn't have characters!");
+                     return 2;
+                }*/
+           // return 0;
+     
+   
+			function emailControl(email){
+				var regex = /[a-z]+\d{3}@ikasle.ehu.e(u?)s/g;                           
+                                
+				/*if(document.getElementById("Email").value.match(em).length < document.getElementById("Email").value.length){
+                      alert("The email is not correct, it must have three numbers in the end!");
+                      return -1;
+                }
+                return 0;*/
+			return regex.test(email);
+
+            }
+					
+			</script>
+				
+	</head>
+
+	<body background = "fondo.jpg">
+		
+		<form id="erregistro" name="erregistro" onSubmit="baliozkoa()">
+
 		<p><font face="Arial" size="3">
 			
 			<fieldset>
 			
 			<legend> Personal information: </legend><br>
 			
-			First name:*<br>
-			<input type="text" name="Firstname" required><br>
-			Last name:*<br>
-			<input type="text" name="Lastname" required><br>
+			Name (should include 2 surnamnes with it):*<br>
+			<input type="text" name="Name" id="n"><br>
 			Password:*<br>
-			<input type="password" name="Password" required><br>
+			<input type="password" name="Password" id ="p"><br>
 			E-mail:* <br>
-			<input type="email" name="Email" required><br>
+			<input type="email" name="Email" id="e"><br>
 			Phone number:*<br>
-			<input type="tel" name= "Phone" required></input><br>
+			<input type="tel" name= "Telephone" id="t"></input><br>
 			Speciality:*<br>
-			<select required>
+			<select>
+				<option value=""></option>
 				<option value="Software Engineering">Software Engineering</option>
 				<option value="SpecialityComputational Engineering">Computational Engineering</option>
 				<option value="Hardware Engineering">Hardware Engineering</option>
+				<option value="Others">Others</option>
 			</select><br>
 			<br>
 			Other comments:<br>
@@ -76,7 +165,7 @@
 			
 			<P ALIGN=center><input type="reset" value="Reset"></input></p>
 			
-			<P ALIGN=center><input type="submit" value="Submit"></p>
+			<P ALIGN=center><input type="submit" value="Submit"></input></p>
 			
 			</fieldset>
 			</font></p>
