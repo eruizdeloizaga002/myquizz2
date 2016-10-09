@@ -26,7 +26,21 @@
 		<h1><P ALIGN=center>SIGNUP</p></h1>
 		
 			<script type="text/javascript">
+
+		
+			function visibility(){
+				var str1 = document.getElementById("s").value;
+				var str2 = "Others";
+				var x = document.getElementById("so");
 			
+				if (str1.localeCompare(str2) == 0){
+					alert("You have selected Other option, now you should specify your speciality");
+					x.type = "text";
+				}else{
+					x.type = "hidden";
+				}
+			}
+						
 			function baliozkoa(){
 			
 				var i = fieldsEmpty(i);
@@ -34,9 +48,14 @@
 				
 				if (i == 0){	
 					
-					if(!surnameControl(document.getElementById("n").value)){
+					if(!nameControl(document.getElementById("n").value)){
 						v = 1;
-						alert("You should fill the Name gap with two surnames!");
+						alert("Names first character in capital letter!");
+					}
+					
+					if(!surnameControl(document.getElementById("sn").value)){
+						v = 1;
+						alert("You should fill the Surname gap with two surnames!");
 					}
 
 					if(document.getElementById("p").value.length < 6){
@@ -76,20 +95,28 @@
 			function fieldsEmpty(v){			       
 				var frm = document.getElementById("erregistro");
 				
-				for(i=1;i<frm.elements.length-4;i++){
+				for(i=1;i<frm.elements.length-5;i++){
                     if(frm.elements[i].value.length==0){
-					   alert("Fill the required gaps!");
-                       return 1;
+						alert("Fill the required gaps!");
+						return 1;
                     }
                  }	 
 			return 0;
 			}
             		
-			function surnameControl(name){
+			function surnameControl(sname){
 				
-				var regex = /([A-Z])([a-z])+ ([A-Z])([a-z])+ ([A-Z])([a-z])+/g;
+				var regex = /([A-Z])([a-z])+ ([A-Z])([a-z])+/g;
+					
+				return regex.test(sname);
+			}
+			
+			function nameControl(name){
+			
+				var regex = /([A-Z])([a-z])+/g;
 					
 				return regex.test(name);
+						
 			}
 			           
 			function telephoneControl(phone){
@@ -117,7 +144,7 @@
 
 	<body background = "fondo.jpg">
 		
-		<form id="erregistro" name="erregistro" onSubmit="baliozkoa()">
+		<form id="erregistro" name="erregistro" onSubmit="baliozkoa()" method = "post" action = "EnrollWithImage.php" enctype="multipart/form-data">
 
 		<p><font face="Arial" size="3">
 			
@@ -125,8 +152,10 @@
 			
 			<legend> Personal information: </legend><br>
 			
-			Name (should include 2 surnamnes with it):*<br>
+			Name:*<br>
 			<input type="text" name="Name" id="n"><br>
+			Surname(include 2 surnames):*<br>
+			<input type="text" name="SName" id="sn"><br>
 			Password:*<br>
 			<input type="password" name="Password" id ="p"><br>
 			E-mail:* <br>
@@ -134,13 +163,15 @@
 			Phone number:*<br>
 			<input type="text" name= "Telephone" id="t"></input><br>
 			Speciality:*<br>
-			<select>
-				<option value=""></option>
+			<select name="Speciality" id="s" onChange = "visibility()">
 				<option value="Software Engineering">Software Engineering</option>
 				<option value="SpecialityComputational Engineering">Computational Engineering</option>
 				<option value="Hardware Engineering">Hardware Engineering</option>
 				<option value="Others">Others</option>
 			</select><br>
+			
+			<input type="hidden" name= "OthersField" id="so"></input><br>
+			
 			<br>
 			Other comments:<br>
 			<textarea name="Comments" cols="40" rows="5"></textarea><br>
