@@ -17,12 +17,14 @@
 	
 	$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
 		
-		if($_POST[Speciality] == "Others"){
-			$var = $_POST[OthersField];
+		if($_POST['Speciality'] == "Others"){
+			$var = $_POST['OthersField'];
 		}else{
-			$var = $_POST[Speciality];
+			$var = $_POST['Speciality'];
 		}
+		
 	
+		
 	$sql = "INSERT INTO erabiltzaile VALUES ('$_POST[Name]','$_POST[SName]','$_POST[Password]','$_POST[Email]','$_POST[Telephone]','$var','$_POST[Comments]')";
 	
 	if(!mysqli_query($connect, $sql)){
