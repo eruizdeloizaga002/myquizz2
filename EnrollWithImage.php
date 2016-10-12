@@ -18,7 +18,7 @@
 	$var = 0;
 	$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
 	
-	//$sql = "INSERT INTO erabiltzaile VALUES ('$_POST[Name]','$_POST[SName]','$_POST[Password]','$_POST[Email]','$_POST[Telephone]','$var','$_POST[Comments]','$image')";	
+	
 	
 		//Speciality tratamendua
 	if($_POST['Speciality'] == "Others"){
@@ -37,7 +37,7 @@
 		//Izen kontrola
 	$name = $_POST['Name'];
 	
-	if(filter_var($name, FILTER_VALIDATE_REGEXP, array("options" => array( "regexp" => "/([A-Z])([a-z])+/g ")))){
+	if(filter_var($name, FILTER_VALIDATE_REGEXP, array("options" => array( "regexp" => "/([A-Z])([a-z])+/")))){
 		echo("$name is a valid name <br>");
 	} else {
 		$var = 1;
@@ -47,7 +47,7 @@
 		//Abizen kontrola
 	$sname = $_POST['SName'];
 	
-	if(filter_var($sname, FILTER_VALIDATE_REGEXP, array("options" => array( "regexp" => "/([A-Z])([a-z])+ ([A-Z])([a-z])+/g ")))){
+	if(filter_var($sname, FILTER_VALIDATE_REGEXP, array("options" => array( "regexp" => "/([A-Z])([a-z])+ ([A-Z])([a-z])+/")))){
 		echo("$sname is a valid surname <br>");
 	} else {
 		$var = 1;
@@ -76,15 +76,24 @@
 	
 		//Mugikor kontrola
 	$telephone = $_POST['Telephone'];
-	$min = 9;
-	$max = 9;
+	/*$min = 10;
+	$max = 10;
 
-	if (filter_var($telephone, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max)))) {
+	if (!filter_var($telephone, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max))) === false) {
+		echo("$telephone is a valid telephone <br>");
+	} else {
+		$var = 1;
+		echo("$telephone should have numeric values and 9 digits");
+	}*/
+	
+	if(!filter_var($telephone, FILTER_VALIDATE_REGEXP, array("options" => array( "regexp" => "/[A-Za-z]+/"))) && !filter_var($telephone, FILTER_VALIDATE_REGEXP, array("options" => array( "regexp" => "/\d{9}/"))) == false){
 		echo("$telephone is a valid telephone <br>");
 	} else {
 		$var = 1;
 		echo("$telephone should have numeric values and 9 digits");
 	}
+	
+	
 
 	if ($var == 0){
 		$sql = "INSERT INTO erabiltzaile VALUES ('$name','$sname','$password','$email','$telephone','$sp','$_POST[Comments]','$image')";
