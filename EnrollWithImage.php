@@ -17,8 +17,7 @@
 	
 	$var = 0;
 	$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
-	
-	
+
 	
 		//Speciality tratamendua
 	if($_POST['Speciality'] == "Others"){
@@ -76,8 +75,8 @@
 	
 		//Mugikor kontrola
 	$telephone = $_POST['Telephone'];
-	/*$min = 10;
-	$max = 10;
+	/*$min = 9;
+	$max = 9;
 
 	if (!filter_var($telephone, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max))) === false) {
 		echo("$telephone is a valid telephone <br>");
@@ -109,10 +108,9 @@
 	
 	echo " 1 record added <br>";
 	mysqli_close($connect);
-	echo "<p> <a href = 'ShowUsersWithImage.php'> Erregistroak ikusi </a> </p> <br>";
-	echo "<p> <a href = 'http://enekordl.esy.es/myquiz/Layout.html'> Layout </a> </p>";
-	
-	
+
+	header("Location: layout.html");
+
 ?> 
 
 </body>
