@@ -17,8 +17,8 @@
 
 	$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
 
-	if (empty($_POST['Galdera']) || empty($_POST['Erantzuna'])) {
-				echo ("Question or Answer empty");
+	if (empty($_POST['Question']) || empty($_POST['Answer'])) {
+		echo ("Question or Answer empty");
 	}else{
 	
 	$zenb = "SELECT Zenbakia FROM galderak";
@@ -57,6 +57,7 @@
 	echo " 1 record added <br>";
 	mysqli_close($connect);
 	echo "<p> <a href = 'layout2.html'> Layout </a> </p> <br>";
+	
 	}
 ?> 
 
