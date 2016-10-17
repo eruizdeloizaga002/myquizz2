@@ -2,28 +2,42 @@
 <HTML>
 <head> 
 	<style type="text/css">
-		<!--
-			body { cursor: crosshair}
-		-->
-		fieldset {
-			background-color:  #dfdfdf;
-			border:  1px solid #ccc;
-			margin:  2em 0;
-			padding:  1em;
-		}
-		
-		h1 {
-			color: black;
-			font-family: Impact;
-			font-size: 200%;
-		}
+	
+	body { 
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 125%;
+	margin-left: 100px;
+	margin-right: 100px;
+	
+	cursor: crosshair;
+	}
+	
+	fieldset {
+    background-color:  #dfdfdf;
+    border:  1px solid #ccc;
+    margin:  2em 0;
+    padding:  1em;
+	}
+	
+	h1 {
+    color: black;
+    font-family: 'Poiret One';
+    font-size: 250%;
+	}
 	</style> 
-	<title> Login </title>
+	
+	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poiret+One" rel="stylesheet">
+		
+	<title> SignIn.html </title>
+	
+	<h1 ALIGN=center>SIGNIN </h1>
+	
 </head>
-<body background = "fondo.jpg">
-	<p><font face="Arial" size="3">
+
+<body>
+	
 	<fieldset>
-		<legend> Login: </legend><br>
 		<form id="login" name="login" method="post" action="SignIn.php" enctype="multipart/form-data">
 			Email:
 			<br>
@@ -35,7 +49,6 @@
 	</fieldset>
 		<br><br>
 		<span class="right"><P ALIGN=center><a href="layout.html">Back</a></p></span>
-	</font></p>
 
 
 </body>
