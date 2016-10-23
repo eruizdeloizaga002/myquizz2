@@ -27,7 +27,7 @@
 	echo '</table>';
 	
 	
-		$zenb2 = "SELECT Zenbakia FROM ekintzak";
+	$zenb2 = "SELECT Zenbakia FROM ekintzak";
 	$unekoZenb2 = 0;
 	
 	$result = $connect->query($zenb2);

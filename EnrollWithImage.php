@@ -62,11 +62,11 @@
 		$var = 1;
 		echo("$password is not a password, it should have 6 digits <br>");
 	}
-	
+		
 		//Email-aren kontrola
 	$email = $_POST['Email']; 
 
-	if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+	if(!filter_var($password, FILTER_VALIDATE_REGEXP, array("options" => array( "regexp" => "/[a-z]+\d{3}@ikasle\.ehu\.e(u?)s/")))){
 		echo("$email is a valid email address <br>");
 	} else {
 		$var = 1;
@@ -75,15 +75,6 @@
 	
 		//Mugikor kontrola
 	$telephone = $_POST['Telephone'];
-	/*$min = 9;
-	$max = 9;
-
-	if (!filter_var($telephone, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max))) === false) {
-		echo("$telephone is a valid telephone <br>");
-	} else {
-		$var = 1;
-		echo("$telephone should have numeric values and 9 digits");
-	}*/
 	
 	if(!filter_var($telephone, FILTER_VALIDATE_REGEXP, array("options" => array( "regexp" => "/[A-Za-z]+/"))) && !filter_var($telephone, FILTER_VALIDATE_REGEXP, array("options" => array( "regexp" => "/\d{9}/"))) == false){
 		echo("$telephone is a valid telephone <br>");
@@ -107,9 +98,14 @@
 	}
 	
 	echo " 1 record added <br>";
+	
 	mysqli_close($connect);
 
-	header("Location: layout.html");
+	
+	echo "<p> <a href = 'ShowUsersWithImage.php'> Erabiltzaileak </a> </p> <br>";
+	echo "<p> <a href = 'SignIn.html'> SignIn </a> </p> <br>";
+	echo "<p> <a href = 'layout.html'> Go to Layout </a> </p> <br>";
+	
 
 ?> 
 

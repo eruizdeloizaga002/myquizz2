@@ -46,7 +46,7 @@
 	session_start();
 	$eposta = $_SESSION['login_user'];
 	
-	$sql = "INSERT INTO galderak VALUES ('$unekoZenb','$eposta','$_POST[Question]','$_POST[Answer]','$_POST[Difficulty]')";
+	$sql = "INSERT INTO galderak VALUES ('$unekoZenb','$eposta','$_POST[Question]','$_POST[Answer]','$_POST[Subject]','$_POST[Difficulty]')";
 	
 	//Konexioa
 	
@@ -55,10 +55,28 @@
 	}
 	
 	echo " 1 record added <br>";
-	//mysqli_close($connect);
+
+	//XML
 	
+	$xml = simplexml_load_file('galderak.xml');
+
+	$assessmentItem = $xml->addChild('assessmentItem');
 	
+		$assessmentItem -> addAttribute('complexity', $_POST[Difficulty]);
 	
+		$assessmentItem -> addAttribute('subject', $_POST[Subject]);
+	
+	$itemBody = $assessmentItem->addChild('itemBody');
+	
+		$itemBody-> addChild('p', $_POST[Question]);
+
+	$correctResponse = $assessmentItem->addChild('correctResponse');
+	
+		$correctResponse-> addChild('value', $_POST[Answer]);
+	
+	$xml->asXML('galderak.xml');
+	
+		
 	$zenb2 = "SELECT Zenbakia FROM ekintzak";
 	$unekoZenb2 = 0;
 	
@@ -91,6 +109,8 @@
 	$IP = $_SERVER["REMOTE_ADDR"];
 	
 	$sql = "INSERT INTO ekintzak VALUES ('$unekoZenb2','$kid','$eposta','$mota','$ordua','$IP')";
+	
+	
 	
 	//Konexioa
 	if(!mysqli_query($connect, $sql)){

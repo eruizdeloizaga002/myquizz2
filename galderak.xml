@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<assessmentItems>
+	<assessmentItem complexity="3" subject="mikologia">
+		<itemBody> 
+			<p>Amanita muskaria zer da?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Perretxikoa</value>
+		</correctResponse>
+	</assessmentItem>
+	<assessmentItem complexity="5" subject="mikologia">
+		<itemBody>
+			<p>Amanita hilkorrena zein da?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Phalloides</value>
+		</correctResponse>
+	</assessmentItem>
+<assessmentItem complexity="4" subject="mikologia"><itemBody><p>Amanita cesarea jangarria da. Bai ala Ez?</p></itemBody><correctResponse><value>Bai</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Dificultades maximas"><itemBody><p>Igortxete es un dickbutt?</p></itemBody><correctResponse><value>Si</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Vacio FC"><itemBody><p>Itsaso va a ir al cine?</p></itemBody><correctResponse><value>No</value></correctResponse></assessmentItem></assessmentItems>

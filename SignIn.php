@@ -12,8 +12,7 @@
 	//$dbpass = "";
 	//$dbname = "quiz";
 	
-		$error=''; 
-
+	$error=''; 
 
 		if (isset($_POST['loginB'])) {
 			if (empty($_POST['erabiltzailea']) || empty($_POST['pasahitza'])) {
