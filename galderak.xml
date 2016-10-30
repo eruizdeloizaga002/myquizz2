@@ -1,4 +1,5 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="seeQuetions.xsl"?>
 <assessmentItems>
 	<assessmentItem complexity="3" subject="mikologia">
 		<itemBody> 
@@ -16,4 +17,4 @@
 			<value>Phalloides</value>
 		</correctResponse>
 	</assessmentItem>
-<assessmentItem complexity="4" subject="mikologia"><itemBody><p>Amanita cesarea jangarria da. Bai ala Ez?</p></itemBody><correctResponse><value>Bai</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Dificultades maximas"><itemBody><p>Igortxete es un dickbutt?</p></itemBody><correctResponse><value>Si</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Vacio FC"><itemBody><p>Itsaso va a ir al cine?</p></itemBody><correctResponse><value>No</value></correctResponse></assessmentItem></assessmentItems>
+<assessmentItem complexity="4" subject="mikologia"><itemBody><p>Amanita cesarea jangarria da. Bai ala Ez?</p></itemBody><correctResponse><value>Bai</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Dificultades maximas"><itemBody><p>Igortxete es un dickbutt?</p></itemBody><correctResponse><value>Si</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Vacio FC"><itemBody><p>Itsaso va a ir al cine?</p></itemBody><correctResponse><value>No</value></correctResponse></assessmentItem><assessmentItem complexity="5" subject="Difficultades maximas"><itemBody><p>Igor es tonto</p></itemBody><correctResponse><value>Ifty Ifty</value></correctResponse></assessmentItem></assessmentItems>

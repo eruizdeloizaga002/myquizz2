@@ -5,15 +5,15 @@
 <P>
 <?php 
 //connection
-	$dbhost = "mysql.hostinger.es";
-	$dbuser = "u515227455_root";
-	$dbpass = "password";
-	$dbname = "u515227455_quiz";
+//$dbhost = "mysql.hostinger.es";
+	//$dbuser = "u515227455_root";
+	//$dbpass = "password";
+	//$dbname = "u515227455_quiz";
 	
-	//$dbhost = "localhost";
-	//$dbuser = "root";
-	//$dbpass = "";
-	//$dbname = "quiz";
+	$dbhost = "localhost";
+	$dbuser = "root";
+	$dbpass = "";
+	$dbname = "quiz";
 	
 	$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
 
@@ -26,7 +26,7 @@
 	
 	$result = $connect->query($zenb);
 
-	if ($result->num_rows > 0) {
+	if ($result-> num_rows > 0) {
     // output data of each row
 		while($row = $result->fetch_assoc()) {
 			if($row["Zenbakia"] > $unekoZenb){

@@ -8,7 +8,7 @@
 	//$dbpass = "password";
 	//$dbname = "u515227455_quiz";
 	
-	/*$dbhost = "localhost";
+	$dbhost = "localhost";
 	$dbuser = "root";
 	$dbpass = "";
 	$dbname = "quiz";
@@ -30,19 +30,7 @@
 	
 	}
 	
-	echo "<p> <a href = 'layout.html'> Back </a> </p>";*/
-	
-
-
-$xslDoc = new DOMDocument();
-$xslDoc->load("seeQuestions.xsl");
-$xmlDoc = new DOMDocument();
-$xmlDoc->load("galderak.xml");
-$proc = new XSLTProcessor();
-$proc = new XSLTProcessor();
-$proc->importStylesheet($xslDoc);
-echo $proc->transformToXML($xmlDoc);	
-
+	echo "<p> <a href = 'layout2.html'> Back </a> </p>";
 	
 ?>
   
