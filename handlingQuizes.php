@@ -71,6 +71,23 @@
                 obj.innerHTML = xhttp.responseText;
             }
         }
+		
+		xhttp2= new XMLHttpRequest();
+        xhttp2.onreadystatechange= function(){
+            if(xhttp2.readyState==4){
+                var obj= document.getElementById('kopurua');
+                obj.innerHTML= xhttp2.responseText;
+            }
+        }
+        
+        function galderaKopurua(){
+            setinterval(galderakZenbatu,5000);
+        }
+        
+        function galderakZenbatu(){
+            xhttp2.open("GET",'galderakZenbatu.php');
+			xhttp2.send(null);
+        }
         
         function nireGalderakIkusi(){
             xhttp.open("GET",'getQuestions.php');
@@ -107,15 +124,16 @@
 			</div>
 			
 			<div class="block">
-				<button class="button" onmousedown="changeBack(this,'gray')" onmouseup="changeBack(this,'rgb(19,122,212)')" type="button" onclick="location.href='layout2.html'">All questions</button>
+				<button class="button" onmousedown="changeBack(this,'gray')" onmouseup="changeBack(this,'rgb(19,122,212)')" type="button" onclick="galderakZenbatu()">Number of Question</button>
 			</div>
+			
 			</div>
 	
 		</fieldset>
 		
-		<div id = "emaitza">
+		<div id ="emaitza"></div>
 		
-		</div>
+		<div id="kopurua"></div>
 		
 	</body>
 

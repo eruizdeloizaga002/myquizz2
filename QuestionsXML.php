@@ -3,15 +3,15 @@
 <body> 
   
 <?php 
-	//$dbhost = "mysql.hostinger.es";
-	//$dbuser = "u515227455_root";
-	//$dbpass = "password";
-	//$dbname = "u515227455_quiz";
+$dbhost = "mysql.hostinger.es";
+$dbuser = "u515227455_root";
+$dbpass = "password";
+$dbname = "u515227455_quiz";
 	
 	/*$dbhost = "localhost";
 	$dbuser = "root";
 	$dbpass = "";
-	$dbname = "quiz";
+	$dbname = "quiz";*/
 
 	$xml = simplexml_load_file('galderak.xml');
 	
@@ -30,10 +30,10 @@
 	
 	}
 	
-	echo "<p> <a href = 'layout.html'> Back </a> </p>";*/
+	echo "<p> <a href = 'layout.html'> Back </a> </p>";
 	
 
-
+/*
 $xslDoc = new DOMDocument();
 $xslDoc->load("seeQuestions.xsl");
 $xmlDoc = new DOMDocument();
@@ -41,7 +41,7 @@ $xmlDoc->load("galderak.xml");
 $proc = new XSLTProcessor();
 $proc = new XSLTProcessor();
 $proc->importStylesheet($xslDoc);
-echo $proc->transformToXML($xmlDoc);	
+echo $proc->transformToXML($xmlDoc);	*/
 
 	
 ?>
