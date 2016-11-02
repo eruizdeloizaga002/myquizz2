@@ -6,7 +6,7 @@
 $dbhost = "mysql.hostinger.es";
 	$dbuser = "u515227455_root";
 	$dbpass = "password";
-	$dbname = "u515227455_quiz";*/
+	$dbname = "u515227455_quiz";
 	
 	/*$dbhost = "localhost";
 	$dbuser = "root";
