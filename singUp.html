@@ -143,9 +143,22 @@
 				var regex = /[a-z]+\d{3}@ikasle\.ehu\.e(u?)s/g;                           
                 
 			return regex.test(email);
+			}
+			
+			 xhttp = new XMLHttpRequest();
+      
+			xhttp.onreadystatechange = function(){
+				if(xhttp.readyState==4){
+					var obj = document.getElementById('p');
+					obj.innerHTML = xhttp.responseText;
+				}
+			}
+			
+			function egiaztatu(){
+				xhttp.open("GET",'egiaztatuPasahitza.php');
+				xhttp.send(null);
+			}
 
-            }
-					
 			</script>
 				
 	</head>
@@ -163,7 +176,7 @@
 			Surname(include 2 surnames):*<br>
 			<input type="text" name="SName" id="sn"><br>
 			Password:*<br>
-			<input type="password" name="Password" id ="p"><br>
+			<input type="password" name="Password" id ="p" onChange ="egiaztatu()"><br>
 			E-mail:* <br>
 			<input type="text" name="Email" id="e"><br>
 			Phone number:*<br>
