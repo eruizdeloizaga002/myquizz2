@@ -16,6 +16,9 @@ function egiaztatu($x){
 	
 	$file = file_get_contents('toppasswords.txt');
 	
+	if($x == ""){
+		return "BAILOGABEA";
+	}
 	if(!strpos($file, $x)){
 		return "BALIOZKOA";
 	}

@@ -5,6 +5,15 @@
 	<!--
 		body { cursor: crosshair}
 	-->
+	body { 
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 125%;
+	margin-left: 100px;
+	margin-right: 100px;
+	
+	cursor: crosshair;
+	}
+	
 	fieldset {
     background-color:  #dfdfdf;
     border:  1px solid #ccc;
@@ -14,17 +23,72 @@
 	
 	h1 {
     color: black;
-    font-family: Impact;
-    font-size: 200%;
+    font-family: 'Poiret One';
+    font-size: 250%;
 	}
+	
+	.centered {
+    margin: 0 auto;
+    text-align: center;
+    width: 800px;
+	}
+	
+	img{
+		border-radius: 50%;
+	}
+	
+	
 	</style>
 	
 	<head>
+		<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poiret+One" rel="stylesheet">
+		
 		<title> credits.html </title>
 		<h1><P ALIGN=center>CREDITS</p></h1>
+		
+		
+	<script>
+		
+		var x = document.getElementById("demo");
+
+		function getLocation() {
+			if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition, showError);
+			} else {
+		x.innerHTML = "Geolocation is not supported by this browser.";
+			}
+		}
+
+		function showPosition(position) {
+			var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+			var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false";
+			document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+		}
+
+		function showError(error) {
+			switch(error.code) {
+				case error.PERMISSION_DENIED:
+					x.innerHTML = "User denied the request for Geolocation."
+					break;
+				case error.POSITION_UNAVAILABLE:
+					x.innerHTML = "Location information is unavailable."
+					break;
+				case error.TIMEOUT:
+					x.innerHTML = "The request to get user location timed out."
+					break;
+				case error.UNKNOWN_ERROR:
+					x.innerHTML = "An unknown error occurred."
+					break;
+			}
+		}
+
+	</script>
+		
 	</head>
 	
-	<body background = "fondo.jpg">
+	<body background>
 	
 	<fieldset>
 		<p><font face="Arial" size=2><b>Name:</b> Mikel Cantero & Eneko Ruiz de Loizaga</font></p>
@@ -32,15 +96,15 @@
 		<P ALIGN=center><img src="eneko.jpg" border="5" width="170" height="125"> <img src="tzmik.jpg" border="5" width="125" height="125"></p>
 	</fieldset>
 	
-	<span class="right"><P ALIGN=center><a href="layout2.html">Back</a></p></span>
+	<span class="right"><P ALIGN=center><a href="layout2.html">Back</a></p></span><br>
+
+	
+	<P ALIGN=center id="demo">Click the button to get your position.</p>
+
+	<P ALIGN=center><button onclick="getLocation()">Try It</button></p><br>
+
+	<div class="centered" id="mapholder"></div>
 
 	</body>
 	
 </html>
-
-
-		
-		
-
-
-

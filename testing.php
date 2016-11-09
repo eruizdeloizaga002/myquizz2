@@ -38,17 +38,20 @@
 
 	<body>
 		
-		<form id="erregistro" name="erregistro" method = "post" action = "egiaztapenak.php">
+		<form id="erregistro" name="erregistro" method = "post" action = "testing.php">
 
 		<fieldset>
 			
 			<legend> Personal information: </legend><br>
 			
 			E-mail:* <br>
-			<input type="text" name="Email" id="e"><br>
+			<input type="text" name="Email" id="e"><br><br>
 			
+			Ticket Number:* (Onartzen dira: 1111, 2222, 3333)<br>
+			<input type="text" name="Ticket" id="t"><br><br>
+		
 			Password:*<br>
-			<input type="password" name= "Password" id ="p"><br>
+			<input type="password" name= "Password" id ="p"><br><br>
 			
 			<P ALIGN=center><input type="submit" value="Submit"></input></p>
 
@@ -62,7 +65,12 @@
 
 <?php
 
+$x = 0;
+$y = 0;
+$z = 0;
+
 //EMAILA
+
 
 require_once('lib/nusoap.php');
 require_once('lib/class.wsdlcache.php');
@@ -71,8 +79,12 @@ $soapclient = new nusoap_client("http://wsjiparsar.esy.es/webZerbitzuak/egiaztat
 
 	if (isset($_POST['Email'])){
 	echo '<h1> Matrikulatuta WS: ' . $soapclient->call('egiaztatuE',array('x'=>$_POST['Email'])). '</h1>';
+	
+		if($soapclient->call('egiaztatuE', array('x'=>$_POST['Email'])) == "BALIOZKOA"){
+			$z = 1;
+		} 
 	}
-
+	
 //PASAHITZA
 
 require_once('lib/nusoap.php');
@@ -82,6 +94,33 @@ $soapclient = new nusoap_client("http://enekordl.esy.es/myquiz/egiaztatuPasahitz
 //$soapclient = new nusoap_client("http://localhost/myquizz/egiaztatuPasahitzaZerb.php?wsdl", true);
 
 	if(isset($_POST['Password'])){
+	
 	echo '<h1> Pasahitza : ' . $soapclient->call('egiaztatu', array('x'=>$_POST['Password'])). '</h1>'; 
+
+		if($soapclient->call('egiaztatu', array('x'=>$_POST['Password'])) == "BALIOZKOA"){
+			$y = 1;
+		} 
 	}
+	
+//TICKETAK
+
+require_once('lib/nusoap.php');
+require_once('lib/class.wsdlcache.php');
+
+$soapclient = new nusoap_client("http://enekordl.esy.es/myquiz/egiaztatuTicketaZerb.php?wsdl", true);
+//$soapclient = new nusoap_client("http://localhost/myquizz/egiaztatuTicketaZerb.php?wsdl", true);
+
+	if(isset($_POST['Ticket'])){
+	
+	echo '<h1> Ticketa : ' . $soapclient->call('ticket', array('x'=>$_POST['Ticket'])). '</h1>'; 
+	
+		if($soapclient->call('ticket', array('x'=>$_POST['Ticket'])) == "BALIOZKOA"){
+			$x = 1;
+		}
+	}
+	
+if($x == 1 && $y == 1 && $z == 1){
+	header("Location: layout2.html");
+}
+	
 ?>

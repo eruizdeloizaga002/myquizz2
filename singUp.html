@@ -145,21 +145,50 @@
 			return regex.test(email);
 			}
 			
-			 xhttp = new XMLHttpRequest();
-      
+			function egiaztatuPasahitza(){
+			
+			var xhttp = new XMLHttpRequest();
+			
 			xhttp.onreadystatechange = function(){
-				if(xhttp.readyState==4){
-					var obj = document.getElementById('p');
-					obj.innerHTML = xhttp.responseText;
+				if(this.readyState==4 && this.status==200){
+					var response = this.responseText;
+					if(response == ""){
+						document.getElementById('p').style.border = "2px solid green";
+					}else{
+						document.getElementById('p').style.border = "2px solid red";
+						document.getElementById('p').innerHTML = xhttp.responseText;
+					}
+				}
+			}
+			xhttp.open("POST","egiaztatupasahitzabez.php",true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			//xhttp.send("pass="+document.getElementById('p').value);
+			xhttp.send("fadsfasdf");
+			
+			}
+			
+			function egiaztatuEposta(){
+			
+			xhttp1 = new XMLHttpRequest();
+		
+			xhttp1.onreadystatechange = function(){
+				if((xhttp1.readyState==4)&& (xhttp1.status==200)){
+					var response = xhttp1.responseText;
+					if(response == "BAI"){
+						document.getElementById('e').style.border = "2px solid green";
+					}else{
+						document.getElementById('e').style.border = "2px solid red";
+					}
 				}
 			}
 			
-			function egiaztatu(){
-				xhttp.open("GET",'egiaztatuPasahitza.php');
-				xhttp.send(null);
+			xhttp1.open("POST",'egiaztatueposta.php');
+			xhttp1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp1.send("email=" + document.getElementById('e').value);
+			
 			}
-
-			</script>
+		
+		</script>
 				
 	</head>
 
@@ -176,9 +205,9 @@
 			Surname(include 2 surnames):*<br>
 			<input type="text" name="SName" id="sn"><br>
 			Password:*<br>
-			<input type="password" name="Password" id ="p" onChange ="egiaztatu()"><br>
+			<input type="password" name="Password" id ="p" onChange ="egiaztatuPasahitza()"><br>
 			E-mail:* <br>
-			<input type="text" name="Email" id="e"><br>
+			<input type="text" name="Email" id="e" onChange = "egiaztatuEposta()"><br>
 			Phone number:*<br>
 			<input type="text" name= "Telephone" id="t"></input><br>
 			Speciality:*<br>
