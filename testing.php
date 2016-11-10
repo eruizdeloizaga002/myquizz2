@@ -80,7 +80,7 @@ $soapclient = new nusoap_client("http://wsjiparsar.esy.es/webZerbitzuak/egiaztat
 	if (isset($_POST['Email'])){
 	echo '<h1> Matrikulatuta WS: ' . $soapclient->call('egiaztatuE',array('x'=>$_POST['Email'])). '</h1>';
 	
-		if($soapclient->call('egiaztatuE', array('x'=>$_POST['Email'])) == "BALIOZKOA"){
+		if($soapclient->call('egiaztatuE', array('x'=>$_POST['Email'])) == "BAI"){
 			$z = 1;
 		} 
 	}

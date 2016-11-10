@@ -44,6 +44,7 @@
 			
 				if (str1.localeCompare(str2) == 0){
 					alert("You have selected Other option, now you should specify your speciality");
+					return false;
 					x.type = "text";
 				}else{
 					x.type = "hidden";
@@ -60,26 +61,31 @@
 					if(!nameControl(document.getElementById("n").value)){
 						v = 1;
 						alert("Names first character in capital letter!");
+						return false;
 					}
 					
 					if(!surnameControl(document.getElementById("sn").value)){
 						v = 1;
 						alert("You should fill the Surname gap with two surnames!");
+						return false;
 					}
 
 					if(document.getElementById("p").value.length < 6){
 						v = 1;
 						alert("The password must have 6 or more elements!");
+						return false;
 					}
 					
 					if(!emailControl(document.getElementById("e").value)){
 						v = 1;
 						alert("The email is not correct, it must have three numbers in the end!");
+						return false;
 					}
 
 					if(!telephoneControl(document.getElementById("t").value)){
 						v = 1;
 						alert("The telephone number is wrong!");
+						return false;
 					}
 					
 					if (v == 0){
@@ -150,49 +156,76 @@
 			var xhttp = new XMLHttpRequest();
 			
 			xhttp.onreadystatechange = function(){
-				if(this.readyState==4 && this.status==200){
-					var response = this.responseText;
-					if(response == ""){
+			
+				if((xhttp.readyState==4) && (xhttp.status==200)){
+					var response = xhttp.responseText;
+					
+					if(response == "BALIOZKOA"){
 						document.getElementById('p').style.border = "2px solid green";
+						document.getElementById('c').style.visibility = "visible";
 					}else{
 						document.getElementById('p').style.border = "2px solid red";
-						document.getElementById('p').innerHTML = xhttp.responseText;
+						document.getElementById('c').style.visibility = "hidden";
 					}
 				}
 			}
-			xhttp.open("POST","egiaztatupasahitzabez.php",true);
+			xhttp.open("POST",'egiaztatupasahitzabez.php');
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			//xhttp.send("pass="+document.getElementById('p').value);
-			xhttp.send("fadsfasdf");
-			
-			}
-			
-			function egiaztatuEposta(){
-			
-			xhttp1 = new XMLHttpRequest();
+			xhttp.send('Password=' + document.getElementById('p').value);
+			}		
 		
+		function egiaztatuEposta(){
+			
+			var xhttp1 = new XMLHttpRequest();
+			
 			xhttp1.onreadystatechange = function(){
-				if((xhttp1.readyState==4)&& (xhttp1.status==200)){
-					var response = xhttp1.responseText;
-					if(response == "BAI"){
+			
+				if((xhttp1.readyState==4) && (xhttp1.status==200)){
+					var response1 = xhttp1.responseText;
+					
+					if(response1 == "BAI"){
 						document.getElementById('e').style.border = "2px solid green";
 					}else{
 						document.getElementById('e').style.border = "2px solid red";
+						
 					}
 				}
 			}
-			
 			xhttp1.open("POST",'egiaztatueposta.php');
 			xhttp1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp1.send("email=" + document.getElementById('e').value);
-			
-			}
+			xhttp1.send('Email=' + document.getElementById('e').value);
+		}
 		
+		function egiaztatuKodea(){
+			
+			var xhttp2 = new XMLHttpRequest();
+			
+			xhttp2.onreadystatechange = function(){
+			
+				if((xhttp2.readyState==4) && (xhttp2.status==200)){
+					var response2 = xhttp2.responseText;
+					
+					if(response2 == "BALIOZKOA"){
+						document.getElementById('c').style.border = "2px solid green";
+					}else{
+						document.getElementById('c').style.border = "2px solid red";
+					}
+				}
+			}
+			xhttp2.open("POST",'egiaztatukodeabez.php');
+			xhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp2.send('Ticket=' + document.getElementById('c').value);
+		}
+		
+		function hasieratu(){
+			document.getElementById('c').style.visibility = "hidden";
+		}
+			
 		</script>
 				
 	</head>
 
-	<body>
+	<body onload = "hasieratu()">
 		
 		<form id="erregistro" name="erregistro" onSubmit="baliozkoa()" method = "post" action = "EnrollWithImage.php" enctype="multipart/form-data">
 
@@ -208,6 +241,8 @@
 			<input type="password" name="Password" id ="p" onChange ="egiaztatuPasahitza()"><br>
 			E-mail:* <br>
 			<input type="text" name="Email" id="e" onChange = "egiaztatuEposta()"><br>
+			Code:* (1111, 2222, 3333) <br>
+			<input type="text" name="Ticket" id="c" onChange = "egiaztatuKodea()"><br>
 			Phone number:*<br>
 			<input type="text" name= "Telephone" id="t"></input><br>
 			Speciality:*<br>
@@ -233,7 +268,10 @@
 			
 			</fieldset>
 		</form>
+		
 			<span class="right"><P ALIGN=center><a href="layout.html">Back</a></p></span>
+			
+			<div id= "response"> </div>
 	</body>
 
 </html>
