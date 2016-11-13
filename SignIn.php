@@ -11,31 +11,35 @@
 	$dbuser = "root";
 	$dbpass = "";
 	$dbname = "quiz";*/
-	
 	$error=''; 
 
-		if (isset($_POST['loginB'])) {
-			if (empty($_POST['erabiltzailea']) || empty($_POST['pasahitza'])) {
-				echo ("Username or Password empty");
+			if (!empty($_POST['Email']) && !empty($_POST['Password'])){
+				$username = $_POST['Email'];
+				$password = $_POST['Password'];
+				
+			}else{
+				session_start();			
+				$emaila = $_SESSION['sesioa_email'];
+				$pasahitza = $_SESSION['sesioa_pasahitza'];
+				$username=$emaila;
+				$password=$pasahitza;
 			}
-			else
-			{
-				$username=$_POST['erabiltzailea'];
-				$password=$_POST['pasahitza'];
-				$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
-				$sql = "SELECT Email FROM erabiltzaile where Password='$password' AND Email='$username'";
-				$query = mysqli_query($connect, $sql);
-				$row = mysqli_fetch_array($query, MYSQLI_ASSOC);
-				$num = mysqli_num_rows($query);
+			
+			$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
+			$sql = "SELECT Email FROM erabiltzaile where Password='$password' AND Email='$username'";
+			$query = mysqli_query($connect, $sql);
+			$row = mysqli_fetch_array($query, MYSQLI_ASSOC);
+			$num = mysqli_num_rows($query);
 				
 				if ($num == 1) {
-					session_start();
-					$_SESSION['login_user']=$username;
 					
-					$zenb = "SELECT Zenbakia FROM konexioa";
-					$unekoZenb = 0;
-	
-					$result = $connect->query($zenb);
+				//Konexioaren zenbakia eguneratu
+				
+				$_SESSION['login_user']=$username;
+				
+				$zenb = "SELECT Zenbakia FROM konexioa";
+				$unekoZenb = 0;
+				$result = $connect->query($zenb);
 
 					if ($result->num_rows > 0) {
 					// output data of each row
@@ -54,7 +58,7 @@
 						$unekoZenb = $unekoZenb + 1;
 					}
 					
-					session_start();
+					//session_start();
 					$_SESSION['kid']=$unekoZenb;
 					
 					$ordua = date("Y-m-d H:i:sa");
@@ -63,17 +67,20 @@
 					if(!mysqli_query($connect, $sql)){
 						die('Errorea: ' . mysqli_error($connect));
 					}
-					echo " 1 record added <br>";
 					
-					header("Location: InsertQuestion.html");
-				
-				} else {
+					//Irakaslea edo ikaslea den begiratu
+					
+					if($username == "web000@ehu.es"){
+						header("Location: reviewingQuizes.php");
+					}else{
+						header("Location: handlingQuizes.php");
+					}
+					
+				}else {
 					echo ("Username or Password is invalid");
+					echo "<a href='SignIn.html'> SignIn </a>";
 				}
-				mysqli_close($connect); 
-				
-			}
-		}
+			mysqli_close($connect); 		
 	?>
 </body>
 </html> 

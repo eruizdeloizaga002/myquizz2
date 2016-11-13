@@ -110,7 +110,7 @@
 			<div class="row">
 			
 			<div class="block">
-				<button class="button" onmousedown="changeBack(this,'gray')" onmouseup="changeBack(this,'rgb(19,122,212)')" type="button" onclick="location.href='layout2.html'">Home</button>
+				<button class="button" onmousedown="changeBack(this,'gray')" onmouseup="changeBack(this,'rgb(19,122,212)')" type="button" onclick="location.href='layout2.php'">Home</button>
 			</div>
 			
 			<div class="block">
@@ -151,8 +151,9 @@
 	$kontGalderaGuztiak=0;
 	
 	$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server');
+	
 	session_start();
-	$erabiltzaile=$_SESSION['login_user'];
+	$erabiltzaile = $_SESSION['login_user'];
 	$sql= "SELECT Galdera FROM galderak WHERE Egilea = '$erabiltzaile'";
 	$sql2= "SELECT Galdera FROM galderak";
 	$galderak1= mysqli_query($connect,$sql);
