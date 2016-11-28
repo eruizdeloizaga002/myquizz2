@@ -8,10 +8,10 @@
 	$dbpass = "password";
 	$dbname = "u515227455_quiz";
 	
-	//$dbhost = "localhost";
-	//$dbuser = "root";
-	//$dbpass = "";
-	//$dbname = "quiz";
+	/*$dbhost = "localhost";
+	$dbuser = "root";
+	$dbpass = "";
+	$dbname = "quiz";*/
 
 	$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
 	
@@ -65,9 +65,7 @@
 	//Konexioa
 	if(!mysqli_query($connect, $sql)){
 		die('Errorea: ' . mysqli_error($connect));
-	}
-	
-	echo " 1 record added <br>";	
+	}	
 	
 	mysqli_close($connect);
 	

@@ -110,8 +110,7 @@
 	
 	$sql = "INSERT INTO ekintzak VALUES ('$unekoZenb2','$kid','$eposta','$mota','$ordua','$IP')";
 	
-	
-	
+
 	//Konexioa
 	if(!mysqli_query($connect, $sql)){
 		die('Errorea: ' . mysqli_error($connect));
@@ -120,7 +119,7 @@
 	echo " 1 record added <br>";
 
 	mysqli_close($connect);
-	echo "<p> <a href = 'layout2.html'> Layout </a> </p> <br>";
+	echo "<p> <a href = 'layout2.php'> Layout </a> </p> <br>";
 	
 	}
 ?> 

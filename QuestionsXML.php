@@ -18,7 +18,7 @@ $dbname = "u515227455_quiz";
 	foreach ($xml->xpath('//assessmentItem') as $assessmentItem){
 		echo "--------------------------------------------------------------------------------------- <br>";
 		echo "Galdera:<br>";
-		foreach($assessmentItem-> children() as $itemBody ){
+		foreach($assessmentItem->children() as $itemBody ){
 			echo utf8_decode("$itemBody->p<br>");
 		}
 	

@@ -3,7 +3,7 @@
 <body> 
   
 <?php 
-$dbhost = "mysql.hostinger.es";
+	$dbhost = "mysql.hostinger.es";
 	$dbuser = "u515227455_root";
 	$dbpass = "password";
 	$dbname = "u515227455_quiz";

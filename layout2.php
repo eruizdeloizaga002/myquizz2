@@ -29,7 +29,7 @@
 		<span><a href='QuestionsXML2.php'>Questions XML</a></span>
 		<span><a href = 'ShowUsersWithImage2.php'>Users</a></span>
 		<div id = "h" style="visibility:hidden;"><a href ='handlingQuizes.php'>Handling Quizes</a></div>
-		<span><a href ='reviewingQuizes.php'>Reviewing Quizes</a></span>
+		<div id = "r" style="visibility:hidden;"><a href ='reviewingQuizes.php'>Reviewing Quizes</a></div>
 		
 		<span class="right"><a href='credits2.html'> Credits </a></span>
 	</nav>
@@ -48,16 +48,27 @@
 </html>
 
 <?php 
-	$dbhost = "localhost";
+
+	$dbhost = "mysql.hostinger.es";
+	$dbuser = "u515227455_root";
+	$dbpass = "password";
+	$dbname = "u515227455_quiz";
+
+	/*$dbhost = "localhost";
 	$dbuser = "root";
 	$dbpass = "";
-	$dbname = "quiz";
+	$dbname = "quiz";*/
 	
 	$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server');
 	
 	session_start();
-	$user = $_SESSION['login_user'];
-	echo "$user";
+	if(isset($_SESSION['login_user'])){
+		$user = $_SESSION['login_user'];
+	}else{
+		$user = $_SESSION['sesioa_email'];
+	}
+	
+	echo "You are logged as : $user";
 	
 	if($user == "web000@ehu.es"){
 		?>

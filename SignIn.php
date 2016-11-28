@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-<?php 
+<?php session_start();
 	$dbhost = "mysql.hostinger.es";
 	$dbuser = "u515227455_root";
 	$dbpass = "password";
@@ -11,18 +11,15 @@
 	$dbuser = "root";
 	$dbpass = "";
 	$dbname = "quiz";*/
+	
 	$error=''; 
-
-			if (!empty($_POST['Email']) && !empty($_POST['Password'])){
+	
+			if (!isset($_SESSION['sesioa_email']) || !isset($_SESSION['sesioa_pasahitza'])){
 				$username = $_POST['Email'];
 				$password = $_POST['Password'];
-				
 			}else{
-				session_start();			
-				$emaila = $_SESSION['sesioa_email'];
-				$pasahitza = $_SESSION['sesioa_pasahitza'];
-				$username=$emaila;
-				$password=$pasahitza;
+				$username = $_SESSION['sesioa_email'];
+				$password = $_SESSION['sesioa_pasahitza'];
 			}
 			
 			$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
@@ -32,9 +29,8 @@
 			$num = mysqli_num_rows($query);
 				
 				if ($num == 1) {
-					
 				//Konexioaren zenbakia eguneratu
-				
+
 				$_SESSION['login_user']=$username;
 				
 				$zenb = "SELECT Zenbakia FROM konexioa";
@@ -76,10 +72,22 @@
 						header("Location: handlingQuizes.php");
 					}
 					
-				}else {
+				}
+				
+				if(isset($_SESSION['sesioa_email']) && num == 0) {
+					$user = $_SESSION['sesioa_email'];
+					if($user == "web000@ehu.es"){
+						$_SESSION['user2'] = $user;
+						header("Location: reviewingQuizes.php");
+					}else{
+						$_SESSION['user2'] = $user;
+						header("Location: handlingQuizes.php");
+					}
+				}else{
 					echo ("Username or Password is invalid");
 					echo "<a href='SignIn.html'> SignIn </a>";
 				}
+				
 			mysqli_close($connect); 		
 	?>
 </body>

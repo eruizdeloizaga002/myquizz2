@@ -27,7 +27,6 @@
 	}
 	
 	div.absolute {
-    position: absolute;
     top: 80px;
     right:250px;
     width: 250px;
@@ -95,6 +94,11 @@
 	$dbpass = "";
 	$dbname = "quiz";*/
 	
+
+	if(!isset($_SESSION['login_user'])){
+		header("Location: layout.html");
+	}else{
+	
 	$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
 	$sql = "SELECT * FROM galderak";
 	$galderak= mysqli_query($connect, $sql);
@@ -110,7 +114,11 @@
 	echo '</table>';
     mysqli_close($connect);
 	
-	echo "<a href='layout2.html'> Back </a>";
+	$erabiltzaile = $_SESSION['login_user'];
+	echo "You are logged as: '$erabiltzaile'<br>";
+	echo "<a href='layout2.php'> Back </a>";
+	
+	}
 	
 ?>
 
@@ -133,9 +141,7 @@
 		<input type="text" class = "id" id="id" name="id">
 		
 		<P ALIGN=centre><input type="submit" value="Save changes"></p>
-		
-		
-		
+
 	</form>
 	
 	</div>

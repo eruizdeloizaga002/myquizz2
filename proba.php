@@ -3,15 +3,15 @@
 <body> 
   
 <?php 
-	//$dbhost = "mysql.hostinger.es";
-	//$dbuser = "u515227455_root";
-	//$dbpass = "password";
-	//$dbname = "u515227455_quiz";
+	$dbhost = "mysql.hostinger.es";
+	$dbuser = "u515227455_root";
+	$dbpass = "password";
+	$dbname = "u515227455_quiz";
 	
-	$dbhost = "localhost";
+	/*$dbhost = "localhost";
 	$dbuser = "root";
 	$dbpass = "";
-	$dbname = "quiz";
+	$dbname = "quiz";*/
 
 	$xml = simplexml_load_file('galderak.xml');
 	

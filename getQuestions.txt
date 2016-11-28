@@ -1,15 +1,15 @@
 <?php 
 //connection
 
-   // $dbhost = "mysql.hostinger.es";
-   // $dbuser = "u515227455_root";
-   // $dbpass = "password";
-   // $dbname = "u515227455_quiz";
+    $dbhost = "mysql.hostinger.es";
+    $dbuser = "u515227455_root";
+    $dbpass = "password";
+    $dbname = "u515227455_quiz";
     
-   $dbhost = "localhost";
+  /* $dbhost = "localhost";
    $dbuser = "root";
    $dbpass = "";
-   $dbname = "quiz";
+   $dbname = "quiz";*/
     
     $connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server');
 	session_start();

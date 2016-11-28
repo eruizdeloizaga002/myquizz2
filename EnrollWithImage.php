@@ -5,6 +5,7 @@
 <P>
 <?php 
 //connection
+
 	$dbhost = "mysql.hostinger.es";
 	$dbuser = "u515227455_root";
 	$dbpass = "password";
@@ -60,6 +61,7 @@
 		
 		//Pasahitza kontrola
 	$password = $_POST['Password'];
+	$encrypt = sha1($password);
 	
 	if(filter_var($password, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/.{6}/")))){
 		echo("$password is a valid password <br>");
@@ -104,11 +106,10 @@
 	
 
 	if ($var == 0){
-		$sql = "INSERT INTO erabiltzaile VALUES ('$name','$sname','$password','$email','$telephone','$sp','$_POST[Comments]','$image')";
+		$sql = "INSERT INTO erabiltzaile VALUES ('$name','$sname','$encrypt','$email','$telephone','$sp','$_POST[Comments]','$image')";
 		echo("All the statements are right <br>");
 	}	
 
-		
 	//Konexioa
 	
 	if(!mysqli_query($connect, $sql)){
