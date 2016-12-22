@@ -17,17 +17,22 @@
 	$zailtasuna=$_POST['zail'];
 	$user = $_POST['user'];
 	$id = $_POST['id'];
-	
-	$update = "UPDATE galderak 
+	$delete=false;
+	if(!empty($_POST['delete'])){
+		$delete= $_POST['delete'];
+	}
+	if($delete){
+		$sql="DELETE FROM galderak WHERE Zenbakia='$id'";
+	}else{
+		$sql = "UPDATE galderak 
 			   SET Galdera= '$galdera', Erantzuna = '$erantzuna', Gaia = '$gaia', Zailtasuna = '$zailtasuna'
 			   WHERE Egilea = '$user' AND Zenbakia = '$id' ";
-	
-	$query=mysqli_query($connect,$update);
-	
-	if($query){
-		echo "The question was updated succesfully!";
+	}
+	$query=mysqli_query($connect,$sql);
+	if(!$query){
+		echo "Something was wrong! ";
 	}else{
-		echo "Something went wrong!";
+		echo "The update was made successfully! ";
 	}
 	mysqli_close($connect);
 	echo "<a href='reviewingQuizes.php'> Back </a>";

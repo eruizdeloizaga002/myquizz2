@@ -1,7 +1,6 @@
 <?php 
 //connection
-
-   $dbhost = "mysql.hostinger.es";
+	$dbhost = "mysql.hostinger.es";
 	$dbuser = "u515227455_root";
 	$dbpass = "password";
 	$dbname = "u515227455_quiz";
@@ -16,13 +15,14 @@
 	$erabiltzaile = $_SESSION['login_user'];
     $sql= "SELECT Galdera FROM galderak WHERE Egilea = '$erabiltzaile' ";
     $erab = mysqli_query($connect, $sql);
-       
-	echo '<table border=1><tr><th> Galdera </th></tr>';
+	
+    echo '<div class="col-xs-8 col-xs-offset-2">';   
+	echo '<table class="table table-hover"><thead><tr><th> Galdera </th></tr></thead>';
 
     while ($row = mysqli_fetch_array($erab, MYSQLI_ASSOC)){
         echo '<tr><td>'.$row['Galdera'].'</td><tr>';
     }
-    echo '</table>';
+    echo '</table></div>';
     mysqli_close($connect);
 	
 ?>

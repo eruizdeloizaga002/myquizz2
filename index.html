@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>  
+  
+	<style>
+
+	j1{
+		color: black;
+		font-family: 'Poiret One';
+		font-size: 250%;
+	}
+	
+	j3{
+		font-family: 'Roboto', sans-serif;
+		font-size: 250%;
+	}
+
+	</style>
+
+	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poiret+One" rel="stylesheet">
+    <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+	<title>Quizzes</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+	
+	  xhttp = new XMLHttpRequest();
+      
+		xhttp.onreadystatechange = function(){
+            if(xhttp.readyState==4){
+                var obj = document.getElementById('emaitza');
+                obj.innerHTML = xhttp.responseText;
+            }
+        }
+	
+		function getQuestions(){
+			document.getElementById("play").style = "visibility:hidden; display: none;";
+			document.getElementById("welcome").style = "visibility:hidden; display: none;";
+			document.getElementById("irudia").style = "visibility:hidden; display: none;";
+            xhttp.open("GET",'Quizz.php');
+            xhttp.send(null);
+        }
+		
+		function getSignUp(){
+			document.getElementById("play").style = "visibility:hidden; display: none;";
+			document.getElementById("welcome").style = "visibility:hidden; display: none;";
+			document.getElementById("irudia").style = "visibility:hidden; display: none;";
+            xhttp.open("GET",'signup3.html');
+            xhttp.send(null);
+		}
+		
+		function getSignIn(){
+			document.getElementById("play").style = "visibility:hidden; display: none;";
+			document.getElementById("welcome").style = "visibility:hidden; display: none;";
+			document.getElementById("irudia").style = "visibility:hidden; display: none;";
+            xhttp.open("GET",'SignIn_html.php');
+            xhttp.send(null);
+		}
+		
+	</script>
+	
+ </head>
+  
+  <body>
+  
+  <nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>                        
+			</button>
+        <a class="navbar-brand" href="#">CRAZY QUESTIONS</a>
+    </div>
+	
+	<div class="collapse navbar-collapse" id="myNavbar">
+	
+		<ul class="nav navbar-nav">
+			
+			<li><a href='index.html'><span class="glyphicon glyphicon-home"></span> Home</a></li>
+			
+			<li onClick = "getQuestions()"><a href='#'><span class="glyphicon glyphicon-question-sign"></span> Questions</a></li>
+
+		</ul>
+	
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href='signup3.html'><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+			
+			<li><a href='SignIn_html.php'><span class="glyphicon glyphicon-log-in"></span> Sign In </a></li>
+		</ul>
+	  
+	</div>
+  </div>
+  </nav>
+  
+<div class="container">
+
+	<div id="emaitza"></div>
+ 
+	<div id = "welcome" class="jumbotron">
+		<p align = "center"><j1>WELCOME TO OUR QUIZ PAGE</j1></p>
+	</div>
+	<br>
+	
+	<form action= "erregistratutaGame.php"><P ALIGN="center"><button id = "play" type="submit" class="btn btn-primary"><j3>START PLAYING!</j3></button></p></form>
+	
+	<br><br>	
+ 
+	<div id="irudia"><p align = "center"><img src="quiz.png" height = "200px" width= "200px"></img></p></div>
+
+	
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom" style = "align:center;">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+	  <li><a href='credits.html'><span class="glyphicon glyphicon-sunglasses"></span> About Us</a></li>
+      <li><a href="http://en.wikipedia.org/wiki/Quiz"><span class="glyphicon glyphicon-info-sign"></span> What is a Quiz?</a></li>
+      <li><a href='https://github.com'><span class="glyphicon glyphicon-level-up"></span> Link GITHUB</a></li>
+    </ul>
+  </div>
+</nav>
+
+</div>
+</body>
+</html>

@@ -1,5 +1,28 @@
 <!DOCTYPE HTML>
 <html> 
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poiret+One" rel="stylesheet">
+	
+	<style>
+	
+	j1{
+		color: black;
+		font-family: 'Poiret One';
+		font-size: 250%;
+	}
+	
+	</style>
+
+</head>
+
 <body> 
   
 <?php 
@@ -14,18 +37,6 @@
 	$dbname = "quiz";*/
 
 	$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
-	
-	$sql = "SELECT Galdera,Zailtasuna FROM galderak";
-	
-	$erab = mysqli_query($connect, $sql);
-	
-	echo '<table border=1><tr><th> Galdera </th><th> Zailtasuna</th></tr>';
-
-	while ($row = mysqli_fetch_array($erab, MYSQLI_ASSOC)){
-		echo '<tr><td>'.$row['Galdera'].'</td><td>'.$row['Zailtasuna'].'</td><tr>';
-	}
-	echo '</table>';
-	
 	
 	$zenb2 = "SELECT Zenbakia FROM ekintzak";
 	$unekoZenb2 = 0;
@@ -49,10 +60,14 @@
 		$unekoZenb2 = $unekoZenb2 + 1;
 	}
 	
-	session_start();
-	$kid = $_SESSION['kid'];
+	if(isset($_SESSION['kid'])){
+		session_start();
+		$kid = $_SESSION['kid'];
+	}else{
+		$kid = 0;
+	}
 	
-	$eposta = $_SESSION['login_user'];
+	$eposta = "anonymous";
 	
 	$mota = "Galderak kontsultatu";
 	
@@ -67,12 +82,56 @@
 		die('Errorea: ' . mysqli_error($connect));
 	}
 	
-	echo " 1 record added <br>";	
-	
 	mysqli_close($connect);
-	
-	echo "<p> <a href = 'layout2.html'> Back </a> </p>";
+
 ?>
+ 
+ 
+<div class="container">
+<div class="jumbotron">
+  <p align='center'><j1>Questions</j1></p>
+</div>
+	<strong><?php echo "<p align = 'center'> <a href = 'layout2.php'> Back </a> </p>"; ?></strong>
+	<br>
+<div class="row">
+<div class="col-xs-6 col-xs-offset-3">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Galdera</th>
+        <th>Zailtasuna</th>
+      </tr>
+    </thead>
+    <tbody>
+	
+	<?php
+	
+	$dbhost = "mysql.hostinger.es";
+	$dbuser = "u515227455_root";
+	$dbpass = "password";
+	$dbname = "u515227455_quiz";
+	
+	/*$dbhost = "localhost";
+	$dbuser = "root";
+	$dbpass = "";
+	$dbname = "quiz";*/
+
+	$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
+	
+	$sql = "SELECT Galdera,Zailtasuna FROM galderak";
+	
+	$erab = mysqli_query($connect, $sql);
+	
+	while ($row = mysqli_fetch_array($erab, MYSQLI_ASSOC)){
+		echo '<tr><td>'.$row['Galdera'].'</td><td>'.$row['Zailtasuna'].'</td><tr>';
+	}
+	
+	?>
+    </tbody>
+  </table>
+ </div>
+</div>
+</div>
   
 </body> 
 </html> 

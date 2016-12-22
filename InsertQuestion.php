@@ -5,7 +5,8 @@
 <P>
 <?php 
 //connection
-	$dbhost = "mysql.hostinger.es";
+
+		$dbhost = "mysql.hostinger.es";
 	$dbuser = "u515227455_root";
 	$dbpass = "password";
 	$dbname = "u515227455_quiz";
@@ -44,6 +45,7 @@
 	}
 	
 	session_start();
+	
 	$eposta = $_SESSION['login_user'];
 	
 	$sql = "INSERT INTO galderak VALUES ('$unekoZenb','$eposta','$_POST[Question]','$_POST[Answer]','$_POST[Subject]','$_POST[Difficulty]')";
@@ -53,26 +55,23 @@
 	if(!mysqli_query($connect, $sql)){
 		die('Errorea: ' . mysqli_error($connect));
 	}
-	
-	echo " 1 record added <br>";
-
 	//XML
 	
 	$xml = simplexml_load_file('galderak.xml');
 
 	$assessmentItem = $xml->addChild('assessmentItem');
 	
-		$assessmentItem -> addAttribute('complexity', $_POST[Difficulty]);
+		$assessmentItem -> addAttribute('complexity', $_POST['Difficulty']);
 	
-		$assessmentItem -> addAttribute('subject', $_POST[Subject]);
+		$assessmentItem -> addAttribute('subject', $_POST['Subject']);
 	
 	$itemBody = $assessmentItem->addChild('itemBody');
 	
-		$itemBody-> addChild('p', $_POST[Question]);
+		$itemBody-> addChild('p', $_POST['Question']);
 
 	$correctResponse = $assessmentItem->addChild('correctResponse');
 	
-		$correctResponse-> addChild('value', $_POST[Answer]);
+		$correctResponse-> addChild('value', $_POST['Answer']);
 	
 	$xml->asXML('galderak.xml');
 	
@@ -99,7 +98,6 @@
 		$unekoZenb2 = $unekoZenb2 + 1;
 	}
 	
-	session_start();
 	$kid = $_SESSION['kid'];
 	
 	$mota = "Galdera txertatu";
@@ -116,10 +114,10 @@
 		die('Errorea: ' . mysqli_error($connect));
 	}
 	
-	echo " 1 record added <br>";
+	echo "Your question was saved succesfully! <br>";
 
 	mysqli_close($connect);
-	echo "<p> <a href = 'layout2.php'> Layout </a> </p> <br>";
+	echo "<strong><p> <a href = 'layout2.php'> Home </a> </p> <br><strong>";
 	
 	}
 ?> 

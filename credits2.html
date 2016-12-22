@@ -21,7 +21,7 @@
     padding:  1em;
 	}
 	
-	h1 {
+	j1 {
     color: black;
     font-family: 'Poiret One';
     font-size: 250%;
@@ -33,10 +33,11 @@
     width: 800px;
 	}
 	
-	img{
-		border-radius: 50%;
+	j2 {
+    color: black;
+    font-family: 'Roboto', sans-serif;
+	font-size: 150%;
 	}
-	
 	
 	</style>
 	
@@ -44,9 +45,18 @@
 		<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poiret+One" rel="stylesheet">
 		
-		<title> credits.html </title>
-		<h1><P ALIGN=center>CREDITS</p></h1>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		
+		<title> credits.html </title>
+		<div class="container">
+			<div class="jumbotron">
+				<P ALIGN=center><j1>CREDITS</j1></p>
+			</div>
+		</div>
 		
 	<script>
 		
@@ -88,23 +98,32 @@
 		
 	</head>
 	
-	<body background>
+	<body>
 	
-	<fieldset>
-		<p><font face="Arial" size=2><b>Name:</b> Mikel Cantero & Eneko Ruiz de Loizaga</font></p>
-		<p><font face="Arial" size=2><b>Speciality:</b> Software Engineering</font></p>
-		<P ALIGN=center><img src="eneko.jpg" border="5" width="170" height="125"> <img src="tzmik.jpg" border="5" width="125" height="125"></p>
-	</fieldset>
-	
-	<span class="right"><P ALIGN=center><a href="layout2.html">Back</a></p></span><br>
-
-	
-	<P ALIGN=center id="demo">Click the button to get your position.</p>
-
-	<P ALIGN=center><button onclick="getLocation()">Try It</button></p><br>
-
-	<div class="centered" id="mapholder"></div>
-
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<p><j2><b>Name:</b> Mikel Cantero, Edorta Beitia & Eneko Ruiz de Loizaga</j2></p><br>
+					<p><j2><b>Speciality:</b> Software Engineering & Hardware Engineering</j2></p><br>
+				</div>
+			</div><br>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<P ALIGN=center><img src="eneko.jpg" border="5" width="170" height="125"> 
+					<img src="tzmik.jpg" border="5" width="125" height="125"></p>				
+				</div>
+			</div><br>
+			<div class="row">
+				<strong><span class="right"><P ALIGN=center><a href="layout2.php">Back</a></p></span></strong>
+			</div><br>
+			<div class="row">
+				<P ALIGN=center id="demo">Click the button to get your position.</p>
+			</div><br>
+			<div class="row">
+				<P ALIGN=center><button onclick="getLocation()">Try It</button></p>
+			</div><br>
+			<div style="border-radius: 50%;" class="centered" id="mapholder"></div>
+		</div>
 	</body>
 	
 </html>

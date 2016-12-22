@@ -20,10 +20,22 @@
     padding:  1em;
 	}
 	
-	h1 {
+	j1 {
     color: black;
     font-family: 'Poiret One';
     font-size: 250%;
+	}
+	
+	j2 {
+    color: black;
+    font-family: 'Roboto', sans-serif;
+	font-size: 150%;
+	}
+	
+	j3 {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+	font-size: 150%;
 	}
 	</style> 
 	
@@ -32,70 +44,69 @@
 	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poiret+One" rel="stylesheet">
 	
-	<script type="text/javascript">
-	
-	function fieldsEmpty(){			       
-				var frm = document.getElementById("erregistro");
-				
-				for(i=1;i<frm.elements.length-3;i++){
-                    if(frm.elements[i].value.length==0){
-						return 1;
-                    }
-                 }	 
-		return 0;
-	}
-	
-	function baliozkoa(){
-	
-		var i = fieldsEmpty();
-	
-		if(i != 0){
-			alert("Fill the gaps");	
-		}
-	}
-	
-	</script>
-		
-		<title>	InsertQuestion.html </title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-		<h1><P ALIGN=center>QUESTIONS</p></h1>
-						
+		
+		<title>InsertQuestion.html </title>
 	</head>
 
 	<body>
-		
-		<form id="erregistro" name="erregistro" onSubmit="baliozkoa()" method = "post" action = "InsertQuestion.php">
-		
-			<fieldset>
+		<div class="container">
 			
-			<legend> </legend><br>
-			
-			Quiestion:*<br>
-			<input type="text" name="Question" id="q"><br>
-			Answer:*<br>
-			<input type="text" name="Answer" id="a"><br>
-			Subject:*<br>
-			<input type="text" name="Subject" id="s"><br>
-			Zailtasuna: <br>
-			<select name="Difficulty" id="d">
-				<option value=""></option> 
-				<option value="1">1</option> 
-				<option value="2">2</option> 
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option> 
-			</select>
-			
-			<P ALIGN=center><input type="reset" value="Reset"></input></p>
-		
-			<P ALIGN=center><input type="submit" value="Save answer"></input></p>
-			
-			
-			<span class="right"><P ALIGN=center><a href="layout2.html">Go to Layout</a></p></span>
-			
-			</fieldset>
+			<form id="erregistro" name="erregistro" onSubmit="return baliozkoa()" method = "post" action = "InsertQuestion.php">
+				<div style="visibility: hidden;" class="alert alert-danger alert-dismissible" id="empty">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+						<strong>Something was wrong!</strong>
+						Fill all the rquired gaps.
+				</div>
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<legend><b><j2>Insert your question:</j2></b></legend><br>
+						<strong><P ALIGN=center><a href="layout2.php">Back</a></p><strong>
+					</div>	
+					
+				</div>
+
+				<div class="col-md-6 col-sm-10 col-xs-12 col-md-offset-3 col-sm-offset-1">
+					<j2>Question:*</j2>
+					<input type="text" name="Question" class="form-control" placeholder="Question" id="q" autofocus><br>
+					<j2>Answer:* </j2><br>
+					<input type="text" name="Answer" class="form-control" placeholder="Answer" id="a" autofocus><br>
+					<j2>Subject:*</j2><br>
+					<input type="text" name="Subject" class="form-control" placeholder="Subject" id="s" autofocus><br>
+				</div>
+				
+
+				<div class="col-md-1 col-md-offset-3">
+					<j2>Zailtasuna: </j2><br>
+					<select name="Difficulty" class="form-control" id="d" >
+						<option value=""></option> 
+						<option value="1">1</option> 
+						<option value="2">2</option> 
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option> 
+					</select>
+				</div>
+				<br><br>
+				
+				
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+						<br>
+						<br>
+						<P ALIGN=center><button type="submit" class= "btn btn-primary"><j3><b>Save question</b></j3></button></p>
+						<br>
+						<P ALIGN=center><button type="reset" ><j2>Reset</j2></button></p>
+						<br>
+					</div>
+				</div>
 		</form>
-		
 	</body>
 
 </html>

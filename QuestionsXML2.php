@@ -3,7 +3,7 @@
 <body> 
   
 <?php 
-	$dbhost = "mysql.hostinger.es";
+		$dbhost = "mysql.hostinger.es";
 	$dbuser = "u515227455_root";
 	$dbpass = "password";
 	$dbname = "u515227455_quiz";
@@ -30,7 +30,7 @@
 	
 	}
 	
-	echo "<p> <a href = 'layout2.html'> Back </a> </p>";
+	echo "<p> <a href = 'layout2.php'> Back </a> </p>";
 	
 ?>
   

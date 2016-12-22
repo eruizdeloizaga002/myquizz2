@@ -35,7 +35,7 @@
 	$dbuser = "root";
 	$dbpass = "";
 	$dbname = "quiz";*/
-	
+
 	$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
 	
 	$zenb2 = "SELECT Zenbakia FROM ekintzak";
@@ -89,22 +89,25 @@
  
 <div class="container">
 <div class="jumbotron">
-  <p align='center'><j1>Questions</j1></p>
+  <p align='center'><j1>Answers</j1></p>
 </div>
-	<strong><?php echo "<p align = 'center'> <a href = 'index.html'> Back </a> </p>"; ?></strong>
-	<br>
+
+	<p align="center"><a href="destroysession.php"><button style = "font-size: 15px;" class="btn btn-primary">Home</button></a></p>
+<br>
+	<strong><p align = 'center'> <a href = 'playGame.php'>Back</a></p></strong>
+	
 <div class="row">
 <div class="col-xs-6 col-xs-offset-3">
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Galdera</th>
-        <th>Zailtasuna</th>
+        <th>Question</th>
+        <th>Answer</th>
       </tr>
     </thead>
     <tbody>
 	
-	<?php
+	<?php session_start();
 	
 	$dbhost = "mysql.hostinger.es";
 	$dbuser = "u515227455_root";
@@ -118,12 +121,14 @@
 
 	$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
 	
-	$sql = "SELECT Galdera,Zailtasuna FROM galderak";
+	$subject = $_SESSION['Gaia'];
+	
+	$sql = "SELECT Galdera,Erantzuna FROM galderak WHERE Gaia = '$subject'";
 	
 	$erab = mysqli_query($connect, $sql);
 	
 	while ($row = mysqli_fetch_array($erab, MYSQLI_ASSOC)){
-		echo '<tr><td>'.$row['Galdera'].'</td><td>'.$row['Zailtasuna'].'</td><tr>';
+		echo '<tr><td>'.$row['Galdera'].'</td><td>'.$row['Erantzuna'].'</td><tr>';
 	}
 	
 	?>

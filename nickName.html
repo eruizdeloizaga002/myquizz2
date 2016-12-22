@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Nick name?
+		</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poiret+One" rel="stylesheet">
+		<style>
+			j1 {
+				color: black;
+				font-family: 'Poiret One';
+				font-size: 250%;
+			}
+		</style>
+		<script>
+			function baliozkoa(){
+				if(document.getElementById("nick").valu.length==0){
+					alert("Fill the gap please!");
+					return false;
+				}
+				else{
+					return true;
+				}
+			}
+		</script>
+		<div class="container">
+			<div class="jumbotron">
+				<P align="center"><j1>Nickname</j1></p>
+			</div>
+		</div>
+
+		<strong><span class="right"><P ALIGN=center><a href="index.html">Back</a></p></span></strong>
+		<br>
+		<br>
+		
+	</head>
+	<body>
+		<div class="container">
+			<div class="col-md-7 col-md-offset-3">
+				<legend>Do you want to play with a nickname?</legend>
+				<form onSubmit="return baliozkoa()" method="post" action="anonymousSession.php">
+				<div class="col-xs-8 col-xs-offset-1">
+					<p align="center">
+					<input type="text" name="nick" id="nick"></input><br><br>
+					</p>
+				</div>
+				<div class="row">
+					<div class="col-md-8 col-md-offset-1">
+						<p align="center">
+						
+							<strong><a href="game.php">Continue without nickname</a><strong><br><br>
+							<button title="Click to save your nickname!" type="submit" class="btn btn-primary">Submit</button><br><br>
+							
+						</p>
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

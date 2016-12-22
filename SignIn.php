@@ -22,8 +22,10 @@
 				$password = $_SESSION['sesioa_pasahitza'];
 			}
 			
+			$encrypt=sha1($password);
+			
 			$connect = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die('cannot connect to the server'); 
-			$sql = "SELECT Email FROM erabiltzaile where Password='$password' AND Email='$username'";
+			$sql = "SELECT * FROM erabiltzaile where Password='$encrypt' AND Email='$username'";
 			$query = mysqli_query($connect, $sql);
 			$row = mysqli_fetch_array($query, MYSQLI_ASSOC);
 			$num = mysqli_num_rows($query);
@@ -32,6 +34,8 @@
 				//Konexioaren zenbakia eguneratu
 
 				$_SESSION['login_user']=$username;
+				
+				$_SESSION['Name'] = $row['Name'];
 				
 				$zenb = "SELECT Zenbakia FROM konexioa";
 				$unekoZenb = 0;
@@ -72,21 +76,46 @@
 						header("Location: handlingQuizes.php");
 					}
 					
+				}else{
+					
+					if(isset($_SESSION['sesioa_email'])) {
+						
+						$user = $_SESSION['sesioa_email'];
+							
+						if($user == "web000@ehu.es"){
+							$_SESSION['user2'] = $user;
+							header("Location: reviewingQuizes.php");
+						}else{
+							$_SESSION['user2'] = $user;
+							header("Location: handlingQuizes.php");
+						}
+						
+					}else{
+						
+						$sql = "SELECT Kopurua FROM saiakerak WHERE Email= '$username'";
+						$result = $connect->query($sql);
+						$val = $result->fetch_assoc();	
+						$num = mysqli_num_rows($result);
+							
+							if($num != 0){
+								$k = $val['Kopurua'];
+								
+								$k = $k + 1;
+								
+								$sql = "UPDATE saiakerak SET Kopurua = '$k' WHERE Email = '$username'";
+									if(!mysqli_query($connect, $sql)){
+										die('Errorea: ' . mysqli_error($connect));
+									}							
+								$_SESSION['saiakerak'] = $k;
+								header("Location: SignIn_html.php");
+							}else{
+								$_SESSION['saiakerak'] = -1;
+								header("Location: SignIn_html.php");
+							}
+					}
 				}
 				
-				if(isset($_SESSION['sesioa_email']) && num == 0) {
-					$user = $_SESSION['sesioa_email'];
-					if($user == "web000@ehu.es"){
-						$_SESSION['user2'] = $user;
-						header("Location: reviewingQuizes.php");
-					}else{
-						$_SESSION['user2'] = $user;
-						header("Location: handlingQuizes.php");
-					}
-				}else{
-					echo ("Username or Password is invalid");
-					echo "<a href='SignIn.html'> SignIn </a>";
-				}
+				
 				
 			mysqli_close($connect); 		
 	?>
